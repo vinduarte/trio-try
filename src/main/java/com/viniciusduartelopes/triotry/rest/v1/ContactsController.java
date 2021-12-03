@@ -16,6 +16,6 @@ public class ContactsController {
 
     @PostMapping("sync")
     public SyncResponseModel sync() {
-        return syncService.mockSync();
+        return syncService.sync();
     }
 }
