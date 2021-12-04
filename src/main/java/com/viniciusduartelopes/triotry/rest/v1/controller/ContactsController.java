@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1;
+package com.viniciusduartelopes.triotry.rest.v1.controller;
 
 import com.viniciusduartelopes.triotry.rest.v1.configuration.service.SyncService;
 import com.viniciusduartelopes.triotry.rest.v1.model.SyncResponseModel;
