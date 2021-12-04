@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberModel {
+public class MemberDTO {
 
     @Getter
     @Setter
@@ -18,14 +18,14 @@ public class MemberModel {
     @Setter
     private String status;
 
-    private MergeFieldsModel merge_fields;
+    private MergeFieldsDTO merge_fields;
 
     @XmlElement(name = "merge_fields")
-    public MergeFieldsModel getMerge_fields() {
+    public MergeFieldsDTO getMerge_fields() {
         return merge_fields;
     }
 
-    public void setMerge_fields(MergeFieldsModel merge_fields) {
+    public void setMerge_fields(MergeFieldsDTO merge_fields) {
         this.merge_fields = merge_fields;
     }
 }

@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BatchSubscribeResponseModel {
+public class BatchSubscribeResponseDTO {
 
-    private List<MemberModel> new_members;
-    private List<MemberModel> updated_members;
+    private List<MemberDTO> new_members;
+    private List<MemberDTO> updated_members;
     private Integer total_created;
     private Integer total_updated;
 }

@@ -1,5 +1,6 @@
 package com.viniciusduartelopes.triotry.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CampaignDefaultsModel {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ListDTO {
 
-    private String from_name;
-    private String from_email;
-    private String subject;
-    private String language;
+    private String id;
+    private String name;
 }

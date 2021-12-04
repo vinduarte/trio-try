@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class NewListRequestModel {
+public class NewListRequestDTO {
 
     private String name;
-    private ListContactModel contact;
+    private ListContactDTO contact;
     private String permission_reminder;
     private boolean email_type_option;
-    private CampaignDefaultsModel campaign_defaults;
+    private CampaignDefaultsDTO campaign_defaults;
 }

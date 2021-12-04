@@ -2,10 +2,10 @@ package com.viniciusduartelopes.triotry.controller;
 
 import com.viniciusduartelopes.triotry.service.MailChimpService;
 import com.viniciusduartelopes.triotry.service.MockIOService;
-import com.viniciusduartelopes.triotry.model.ContactModel;
-import com.viniciusduartelopes.triotry.model.GetListsRequestModel;
-import com.viniciusduartelopes.triotry.model.GetMembersRequestModel;
-import com.viniciusduartelopes.triotry.model.ListModel;
+import com.viniciusduartelopes.triotry.model.ContactDTO;
+import com.viniciusduartelopes.triotry.model.GetListsRequestDTO;
+import com.viniciusduartelopes.triotry.model.GetMembersRequestDTO;
+import com.viniciusduartelopes.triotry.model.ListDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class AdditionalFeaturesController {
     private MockIOService mockIOService;
 
     @GetMapping(path = "/mailchimp/lists")
-    public GetListsRequestModel getAllLists() {
+    public GetListsRequestDTO getAllLists() {
         return mailChimpService.getAllLists();
     }
 
@@ -34,17 +34,17 @@ public class AdditionalFeaturesController {
     }
 
     @GetMapping(path = "mockapi/contacts")
-    public List<ContactModel> getFromMockApi() {
+    public List<ContactDTO> getFromMockApi() {
         return mockIOService.getContacts();
     }
 
     @GetMapping(path = "/mailchimp/list/members")
-    public GetMembersRequestModel getAllMembers() {
+    public GetMembersRequestDTO getAllMembers() {
         return mailChimpService.getAllMembers();
     }
 
     @PostMapping(path = "/mailchimp/restart-environment")
-    public ListModel restart() {
+    public ListDTO restart() {
         mailChimpService.deleteList();
         return mailChimpService.createList();
     }

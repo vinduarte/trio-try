@@ -1,7 +1,7 @@
 package com.viniciusduartelopes.triotry.controller;
 
 import com.viniciusduartelopes.triotry.service.SyncService;
-import com.viniciusduartelopes.triotry.model.SyncResponseModel;
+import com.viniciusduartelopes.triotry.model.SyncResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ public class ContactsController {
     private SyncService syncService;
 
     @PostMapping("sync")
-    public SyncResponseModel sync() {
+    public SyncResponseDTO sync() {
         return syncService.sync();
     }
 }

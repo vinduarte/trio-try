@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class MergeFieldsModel {
+public class MergeFieldsDTO {
 
     private String FNAME;
     private String LNAME;

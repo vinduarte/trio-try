@@ -1,17 +1,17 @@
 package com.viniciusduartelopes.triotry.service;
 
 import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
-import com.viniciusduartelopes.triotry.model.BatchSubscribeRequestModel;
-import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseModel;
-import com.viniciusduartelopes.triotry.model.CampaignDefaultsModel;
-import com.viniciusduartelopes.triotry.model.ContactModel;
-import com.viniciusduartelopes.triotry.model.GetListsRequestModel;
-import com.viniciusduartelopes.triotry.model.GetMembersRequestModel;
-import com.viniciusduartelopes.triotry.model.ListContactModel;
-import com.viniciusduartelopes.triotry.model.ListModel;
-import com.viniciusduartelopes.triotry.model.MemberModel;
-import com.viniciusduartelopes.triotry.model.MergeFieldsModel;
-import com.viniciusduartelopes.triotry.model.NewListRequestModel;
+import com.viniciusduartelopes.triotry.model.BatchSubscribeRequestDTO;
+import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseDTO;
+import com.viniciusduartelopes.triotry.model.CampaignDefaultsDTO;
+import com.viniciusduartelopes.triotry.model.ContactDTO;
+import com.viniciusduartelopes.triotry.model.GetListsRequestDTO;
+import com.viniciusduartelopes.triotry.model.GetMembersRequestDTO;
+import com.viniciusduartelopes.triotry.model.ListContactDTO;
+import com.viniciusduartelopes.triotry.model.ListDTO;
+import com.viniciusduartelopes.triotry.model.MemberDTO;
+import com.viniciusduartelopes.triotry.model.MergeFieldsDTO;
+import com.viniciusduartelopes.triotry.model.NewListRequestDTO;
 import com.viniciusduartelopes.triotry.util.ContactsMembersUtil;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +34,7 @@ public class MailChimpService {
 
     @Setter
     @Getter
-    private ListModel list;
+    private ListDTO list;
 
     @Autowired
     private ConfigurationSingleton configurationSingleton;
@@ -60,7 +60,7 @@ public class MailChimpService {
     }
 
     private void updateOrCreateList() {
-        GetListsRequestModel listsRequestModel = getAllLists();
+        GetListsRequestDTO listsRequestModel = getAllLists();
 
         if (listsRequestModel != null && listsRequestModel.getLists() != null && !listsRequestModel.getLists().isEmpty()) {
             list = listsRequestModel.getLists().stream()
@@ -76,53 +76,53 @@ public class MailChimpService {
         }
     }
 
-    public GetListsRequestModel getAllLists() {
+    public GetListsRequestDTO getAllLists() {
         return getWebClientToMailChimp().get()
                 .uri("/lists")
                 .retrieve()
-                .bodyToFlux(GetListsRequestModel.class)
+                .bodyToFlux(GetListsRequestDTO.class)
                 .blockFirst();
     }
 
-    private MemberModel createRandomMember() {
+    private MemberDTO createRandomMember() {
         Random random = new Random();
-        MergeFieldsModel mergeFields = new MergeFieldsModel("contactfname" + random.nextInt(), "contactlname" + random.nextInt());
-        return new MemberModel(random.nextInt() + "@gmail.com", "subscribed", mergeFields);
+        MergeFieldsDTO mergeFields = new MergeFieldsDTO("contactfname" + random.nextInt(), "contactlname" + random.nextInt());
+        return new MemberDTO(random.nextInt() + "@gmail.com", "subscribed", mergeFields);
     }
 
-    private MemberModel alwaysTheSame1() {
-        MergeFieldsModel mergeFields = new MergeFieldsModel("nice guy", "smith");
-        return new MemberModel("smith334333@gmail.com", "subscribed", mergeFields);
+    private MemberDTO alwaysTheSame1() {
+        MergeFieldsDTO mergeFields = new MergeFieldsDTO("nice guy", "smith");
+        return new MemberDTO("smith334333@gmail.com", "subscribed", mergeFields);
     }
 
-    private MemberModel alwaysTheSame2() {
-        MergeFieldsModel mergeFields = new MergeFieldsModel("trivium", "quadrivium");
-        return new MemberModel("trivium-quadrivium@gmail.com", "subscribed", mergeFields);
+    private MemberDTO alwaysTheSame2() {
+        MergeFieldsDTO mergeFields = new MergeFieldsDTO("trivium", "quadrivium");
+        return new MemberDTO("trivium-quadrivium@gmail.com", "subscribed", mergeFields);
     }
 
     public String subscribeRandomContacts() {
-        BatchSubscribeRequestModel batch = new BatchSubscribeRequestModel(
+        BatchSubscribeRequestDTO batch = new BatchSubscribeRequestDTO(
                 Arrays.asList(createRandomMember(), createRandomMember(), alwaysTheSame1(), alwaysTheSame2()), true);
 
         return getWebClientToMailChimp().post()
                 .uri("/lists/" + list.getId())
-                .body(Mono.just(batch), BatchSubscribeRequestModel.class)
+                .body(Mono.just(batch), BatchSubscribeRequestDTO.class)
                 .retrieve()
                 .bodyToFlux(String.class).blockFirst();
     }
 
-    public BatchSubscribeResponseModel subscribeContacts(List<ContactModel> contacts) {
-        BatchSubscribeRequestModel batch
-                = new BatchSubscribeRequestModel(ContactsMembersUtil.contactsToMembers(contacts), true);
+    public BatchSubscribeResponseDTO subscribeContacts(List<ContactDTO> contacts) {
+        BatchSubscribeRequestDTO batch
+                = new BatchSubscribeRequestDTO(ContactsMembersUtil.contactsToMembers(contacts), true);
 
         return getWebClientToMailChimp().post()
                 .uri("/lists/" + list.getId())
-                .body(Mono.just(batch), BatchSubscribeRequestModel.class)
+                .body(Mono.just(batch), BatchSubscribeRequestDTO.class)
                 .retrieve()
-                .bodyToFlux(BatchSubscribeResponseModel.class).blockFirst();
+                .bodyToFlux(BatchSubscribeResponseDTO.class).blockFirst();
     }
 
-    public GetMembersRequestModel getAllMembers() {
+    public GetMembersRequestDTO getAllMembers() {
         return getWebClientToMailChimp().get()
                 .uri(uriBuilder -> uriBuilder
                 .path("/lists")
@@ -131,12 +131,12 @@ public class MailChimpService {
                 .queryParam("count", "1000")
                 .build())
                 .retrieve()
-                .bodyToFlux(GetMembersRequestModel.class)
+                .bodyToFlux(GetMembersRequestDTO.class)
                 .blockFirst();
     }
 
-    public GetListsRequestModel deleteList() {
-        GetListsRequestModel listsRequestModel;
+    public GetListsRequestDTO deleteList() {
+        GetListsRequestDTO listsRequestModel;
 
         try {
             listsRequestModel = getWebClientToMailChimp().delete()
@@ -145,7 +145,7 @@ public class MailChimpService {
                     .path("/" + list.getId())
                     .build())
                     .retrieve()
-                    .bodyToFlux(GetListsRequestModel.class).blockFirst();
+                    .bodyToFlux(GetListsRequestDTO.class).blockFirst();
         } catch (Exception ex) {
             log.log(Level.INFO, "Not possible to delete a list.");
             return null;
@@ -155,21 +155,21 @@ public class MailChimpService {
         return listsRequestModel;
     }
 
-    public ListModel createList() {
-        NewListRequestModel newList = new NewListRequestModel();
-        ListContactModel listContact = new ListContactModel("my_company", "my_address1", "my_address2", "my_city", "my_state", "my_zip_code", "BR");
-        CampaignDefaultsModel campaignDefault = new CampaignDefaultsModel("my_from_name", "my_from_email@gmail.com", "my_subject", "EN_US");
+    public ListDTO createList() {
+        NewListRequestDTO newList = new NewListRequestDTO();
+        ListContactDTO listContact = new ListContactDTO("my_company", "my_address1", "my_address2", "my_city", "my_state", "my_zip_code", "BR");
+        CampaignDefaultsDTO campaignDefault = new CampaignDefaultsDTO("my_from_name", "my_from_email@gmail.com", "my_subject", "EN_US");
         newList.setCampaign_defaults(campaignDefault);
         newList.setContact(listContact);
         newList.setEmail_type_option(true);
         newList.setName(configurationSingleton.getListName());
         newList.setPermission_reminder("permission_reminder");
 
-        ListModel listModel = getWebClientToMailChimp().post()
+        ListDTO listModel = getWebClientToMailChimp().post()
                 .uri("/lists")
-                .body(Mono.just(newList), NewListRequestModel.class)
+                .body(Mono.just(newList), NewListRequestDTO.class)
                 .retrieve()
-                .bodyToFlux(ListModel.class)
+                .bodyToFlux(ListDTO.class)
                 .blockFirst();
 
         list = listModel;

@@ -1,8 +1,8 @@
 package com.viniciusduartelopes.triotry.service;
 
-import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseModel;
-import com.viniciusduartelopes.triotry.model.ContactModel;
-import com.viniciusduartelopes.triotry.model.SyncResponseModel;
+import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseDTO;
+import com.viniciusduartelopes.triotry.model.ContactDTO;
+import com.viniciusduartelopes.triotry.model.SyncResponseDTO;
 import com.viniciusduartelopes.triotry.util.ContactsMembersUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,10 @@ public class SyncService {
     @Autowired
     private MailChimpService mailChimpService;
 
-    public SyncResponseModel sync() {
-        SyncResponseModel syncResponse = new SyncResponseModel(0, new ArrayList<>());
+    public SyncResponseDTO sync() {
+        SyncResponseDTO syncResponse = new SyncResponseDTO(0, new ArrayList<>());
 
-        List<ContactModel> contacts;
+        List<ContactDTO> contacts;
 
         try {
             contacts = mockIOService.getContacts();
@@ -33,7 +33,7 @@ public class SyncService {
             return syncResponse;
         }
 
-        BatchSubscribeResponseModel batchSubscribeResponse;
+        BatchSubscribeResponseDTO batchSubscribeResponse;
         try {
             batchSubscribeResponse = mailChimpService.subscribeContacts(contacts);
         } catch (Exception ex) {

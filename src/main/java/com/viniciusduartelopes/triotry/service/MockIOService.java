@@ -2,7 +2,7 @@ package com.viniciusduartelopes.triotry.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
-import com.viniciusduartelopes.triotry.model.ContactModel;
+import com.viniciusduartelopes.triotry.model.ContactDTO;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +36,7 @@ public class MockIOService {
         }
     }
 
-    public List<ContactModel> getContacts() {
+    public List<ContactDTO> getContacts() {
         Mono<Object[]> response = webClientToMockApi.get()
                 .uri("/contacts")
                 .accept(MediaType.APPLICATION_JSON)
@@ -47,7 +47,7 @@ public class MockIOService {
         ObjectMapper mapper = new ObjectMapper();
 
         return Arrays.stream(objects)
-                .map(object -> mapper.convertValue(object, ContactModel.class))
+                .map(object -> mapper.convertValue(object, ContactDTO.class))
                 .collect(Collectors.toList());
     }
 

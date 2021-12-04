@@ -3,11 +3,12 @@ package com.viniciusduartelopes.triotry.model;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
-public class BatchSubscribeRequestModel {
+@NoArgsConstructor
+@Data
+public class GetListsRequestDTO {
 
-    private List<MemberModel> members;
-    private boolean update_existing;
+    private List<ListDTO> lists;
 }
