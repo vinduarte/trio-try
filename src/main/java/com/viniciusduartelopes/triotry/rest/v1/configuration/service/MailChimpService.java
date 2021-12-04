@@ -2,7 +2,9 @@ package com.viniciusduartelopes.triotry.rest.v1.configuration.service;
 
 import com.viniciusduartelopes.triotry.rest.v1.configuration.ConfigurationSingleton;
 import com.viniciusduartelopes.triotry.rest.v1.model.BatchSubscribeRequestModel;
+import com.viniciusduartelopes.triotry.rest.v1.model.BatchSubscribeResponseModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.CampaignDefaultsModel;
+import com.viniciusduartelopes.triotry.rest.v1.model.ContactModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.GetListsRequestModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.GetMembersRequestModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.ListContactModel;
@@ -10,7 +12,9 @@ import com.viniciusduartelopes.triotry.rest.v1.model.ListModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.MemberModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.MergeFieldsModel;
 import com.viniciusduartelopes.triotry.rest.v1.model.NewListRequestModel;
+import com.viniciusduartelopes.triotry.rest.v1.util.ContactsMembersUtil;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import javax.annotation.PostConstruct;
@@ -73,8 +77,11 @@ public class MailChimpService {
     }
 
     public GetListsRequestModel getAllLists() {
-        return getWebClientToMailChimp().get().uri("/lists").retrieve().bodyToFlux(GetListsRequestModel.class
-        ).blockFirst();
+        return getWebClientToMailChimp().get()
+                .uri("/lists")
+                .retrieve()
+                .bodyToFlux(GetListsRequestModel.class)
+                .blockFirst();
     }
 
     private MemberModel createRandomMember() {
@@ -99,11 +106,20 @@ public class MailChimpService {
 
         return getWebClientToMailChimp().post()
                 .uri("/lists/" + list.getId())
-                .body(Mono.just(batch), BatchSubscribeRequestModel.class
-                )
+                .body(Mono.just(batch), BatchSubscribeRequestModel.class)
                 .retrieve()
-                .bodyToFlux(String.class
-                ).blockFirst();
+                .bodyToFlux(String.class).blockFirst();
+    }
+
+    public BatchSubscribeResponseModel subscribeContacts(List<ContactModel> contacts) {
+        BatchSubscribeRequestModel batch
+                = new BatchSubscribeRequestModel(ContactsMembersUtil.contactsToMembers(contacts), true);
+
+        return getWebClientToMailChimp().post()
+                .uri("/lists/" + list.getId())
+                .body(Mono.just(batch), BatchSubscribeRequestModel.class)
+                .retrieve()
+                .bodyToFlux(BatchSubscribeResponseModel.class).blockFirst();
     }
 
     public GetMembersRequestModel getAllMembers() {
@@ -115,8 +131,8 @@ public class MailChimpService {
                 .queryParam("count", "1000")
                 .build())
                 .retrieve()
-                .bodyToFlux(GetMembersRequestModel.class
-                ).blockFirst();
+                .bodyToFlux(GetMembersRequestModel.class)
+                .blockFirst();
     }
 
     public GetListsRequestModel deleteList() {
