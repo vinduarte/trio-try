@@ -159,11 +159,11 @@ public class MailChimpService {
         NewListRequestDTO newList = new NewListRequestDTO();
         ListContactDTO listContact = new ListContactDTO("my_company", "my_address1", "my_address2", "my_city", "my_state", "my_zip_code", "BR");
         CampaignDefaultsDTO campaignDefault = new CampaignDefaultsDTO("my_from_name", "my_from_email@gmail.com", "my_subject", "EN_US");
-        newList.setCampaign_defaults(campaignDefault);
+        newList.setCampaignDefaults(campaignDefault);
         newList.setContact(listContact);
-        newList.setEmail_type_option(true);
+        newList.setEmailTypeOption(true);
         newList.setName(configurationSingleton.getListName());
-        newList.setPermission_reminder("permission_reminder");
+        newList.setPermissionReminder("permission_reminder");
 
         ListDTO listModel = getWebClientToMailChimp().post()
                 .uri("/lists")

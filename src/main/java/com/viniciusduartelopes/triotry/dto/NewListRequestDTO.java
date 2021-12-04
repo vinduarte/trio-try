@@ -1,5 +1,6 @@
 package com.viniciusduartelopes.triotry.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,13 @@ public class NewListRequestDTO {
 
     private String name;
     private ListContactDTO contact;
-    private String permission_reminder;
-    private boolean email_type_option;
-    private CampaignDefaultsDTO campaign_defaults;
+
+    @JsonProperty("permission_reminder")
+    private String permissionReminder;
+
+    @JsonProperty("email_type_option")
+    private boolean emailTypeOption;
+
+    @JsonProperty("campaign_defaults")
+    private CampaignDefaultsDTO campaignDefaults;
 }

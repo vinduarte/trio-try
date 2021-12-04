@@ -41,15 +41,15 @@ public class SyncService {
             return syncResponse;
         }
 
-        syncResponse.setSyncedContacts(batchSubscribeResponse.getTotal_created()
-                + batchSubscribeResponse.getTotal_updated());
+        syncResponse.setSyncedContacts(batchSubscribeResponse.getTotalCreated()
+                + batchSubscribeResponse.getTotalUpdated());
 
-        if (batchSubscribeResponse.getNew_members() != null && !batchSubscribeResponse.getNew_members().isEmpty()) {
-            syncResponse.getContacts().addAll(ContactsMembersUtil.membersToContacts(batchSubscribeResponse.getNew_members()));
+        if (batchSubscribeResponse.getNewMembers() != null && !batchSubscribeResponse.getNewMembers().isEmpty()) {
+            syncResponse.getContacts().addAll(ContactsMembersUtil.membersToContacts(batchSubscribeResponse.getNewMembers()));
         }
 
-        if (batchSubscribeResponse.getUpdated_members() != null && !batchSubscribeResponse.getUpdated_members().isEmpty()) {
-            syncResponse.getContacts().addAll(ContactsMembersUtil.membersToContacts(batchSubscribeResponse.getUpdated_members()));
+        if (batchSubscribeResponse.getUpdatedMembers() != null && !batchSubscribeResponse.getUpdatedMembers().isEmpty()) {
+            syncResponse.getContacts().addAll(ContactsMembersUtil.membersToContacts(batchSubscribeResponse.getUpdatedMembers()));
         }
 
         return syncResponse;

@@ -23,7 +23,7 @@ public class ContactsMembersUtil {
         List<ContactDTO> contacts = new ArrayList<>();
 
         members.forEach(member -> {
-            contacts.add(new ContactDTO(member.getEmail_address(), member.getMerge_fields().getFNAME(), member.getMerge_fields().getLNAME()));
+            contacts.add(new ContactDTO(member.getEmailAddress(), member.getMergeFields().getFirstName(), member.getMergeFields().getLastName()));
         });
 
         return contacts;

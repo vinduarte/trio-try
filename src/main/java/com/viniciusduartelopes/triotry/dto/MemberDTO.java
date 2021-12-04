@@ -1,6 +1,6 @@
 package com.viniciusduartelopes.triotry.dto;
 
-import javax.xml.bind.annotation.XmlElement;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,20 +12,21 @@ public class MemberDTO {
 
     @Getter
     @Setter
-    private String email_address;
+    @JsonProperty("email_address")
+    private String emailAddress;
 
     @Getter
     @Setter
     private String status;
 
-    private MergeFieldsDTO merge_fields;
+    @JsonProperty("merge_fields")
+    private MergeFieldsDTO mergeFields;
 
-    @XmlElement(name = "merge_fields")
-    public MergeFieldsDTO getMerge_fields() {
-        return merge_fields;
+    public MergeFieldsDTO getMergeFields() {
+        return mergeFields;
     }
 
-    public void setMerge_fields(MergeFieldsDTO merge_fields) {
-        this.merge_fields = merge_fields;
+    public void setMergeFields(MergeFieldsDTO merge_fields) {
+        this.mergeFields = merge_fields;
     }
 }

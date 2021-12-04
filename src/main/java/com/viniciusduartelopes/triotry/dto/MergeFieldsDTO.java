@@ -2,30 +2,17 @@ package com.viniciusduartelopes.triotry.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class MergeFieldsDTO {
 
-    private String FNAME;
-    private String LNAME;
-
     @JsonProperty("FNAME")
-    public String getFNAME() {
-        return FNAME;
-    }
-
-    public void setFNAME(String FNAME) {
-        this.FNAME = FNAME;
-    }
+    private String firstName;
 
     @JsonProperty("LNAME")
-    public String getLNAME() {
-        return LNAME;
-    }
-
-    public void setLNAME(String LNAME) {
-        this.LNAME = LNAME;
-    }
+    private String lastName;
 }
