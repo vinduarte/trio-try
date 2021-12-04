@@ -1,7 +1,7 @@
 package com.viniciusduartelopes.triotry.controller;
 
 import com.viniciusduartelopes.triotry.service.SyncService;
-import com.viniciusduartelopes.triotry.model.SyncResponseDTO;
+import com.viniciusduartelopes.triotry.dto.SyncResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

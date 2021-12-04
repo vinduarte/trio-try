@@ -1,16 +1,16 @@
-package com.viniciusduartelopes.triotry.model;
+package com.viniciusduartelopes.triotry.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListDTO {
+public class GetMembersRequestDTO {
 
-    private String id;
-    private String name;
+    private List<MemberDTO> members;
 }

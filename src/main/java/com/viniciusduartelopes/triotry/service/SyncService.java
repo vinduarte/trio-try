@@ -1,8 +1,8 @@
 package com.viniciusduartelopes.triotry.service;
 
-import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseDTO;
-import com.viniciusduartelopes.triotry.model.ContactDTO;
-import com.viniciusduartelopes.triotry.model.SyncResponseDTO;
+import com.viniciusduartelopes.triotry.dto.BatchSubscribeResponseDTO;
+import com.viniciusduartelopes.triotry.dto.ContactDTO;
+import com.viniciusduartelopes.triotry.dto.SyncResponseDTO;
 import com.viniciusduartelopes.triotry.util.ContactsMembersUtil;
 import java.util.ArrayList;
 import java.util.List;

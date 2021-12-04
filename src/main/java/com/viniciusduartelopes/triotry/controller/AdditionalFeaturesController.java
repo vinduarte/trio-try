@@ -2,10 +2,10 @@ package com.viniciusduartelopes.triotry.controller;
 
 import com.viniciusduartelopes.triotry.service.MailChimpService;
 import com.viniciusduartelopes.triotry.service.MockIOService;
-import com.viniciusduartelopes.triotry.model.ContactDTO;
-import com.viniciusduartelopes.triotry.model.GetListsRequestDTO;
-import com.viniciusduartelopes.triotry.model.GetMembersRequestDTO;
-import com.viniciusduartelopes.triotry.model.ListDTO;
+import com.viniciusduartelopes.triotry.dto.ContactDTO;
+import com.viniciusduartelopes.triotry.dto.GetListsRequestDTO;
+import com.viniciusduartelopes.triotry.dto.GetMembersRequestDTO;
+import com.viniciusduartelopes.triotry.dto.ListDTO;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

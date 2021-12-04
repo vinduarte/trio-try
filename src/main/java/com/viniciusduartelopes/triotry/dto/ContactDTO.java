@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.model;
+package com.viniciusduartelopes.triotry.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

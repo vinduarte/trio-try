@@ -2,7 +2,7 @@ package com.viniciusduartelopes.triotry.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
-import com.viniciusduartelopes.triotry.model.ContactDTO;
+import com.viniciusduartelopes.triotry.dto.ContactDTO;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

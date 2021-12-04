@@ -1,8 +1,8 @@
 package com.viniciusduartelopes.triotry.util;
 
-import com.viniciusduartelopes.triotry.model.ContactDTO;
-import com.viniciusduartelopes.triotry.model.MemberDTO;
-import com.viniciusduartelopes.triotry.model.MergeFieldsDTO;
+import com.viniciusduartelopes.triotry.dto.ContactDTO;
+import com.viniciusduartelopes.triotry.dto.MemberDTO;
+import com.viniciusduartelopes.triotry.dto.MergeFieldsDTO;
 import java.util.ArrayList;
 import java.util.List;
 

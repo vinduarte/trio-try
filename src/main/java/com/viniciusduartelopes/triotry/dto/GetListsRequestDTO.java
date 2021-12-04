@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.model;
+package com.viniciusduartelopes.triotry.dto;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SyncResponseDTO {
+public class GetListsRequestDTO {
 
-    private Integer syncedContacts;
-    private List<ContactDTO> contacts;
+    private List<ListDTO> lists;
 }
