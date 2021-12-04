@@ -1,7 +1,7 @@
 package com.viniciusduartelopes.triotry.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
+import com.viniciusduartelopes.triotry.configuration.ApplicationProperties;
 import com.viniciusduartelopes.triotry.dto.ContactDTO;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ public class MockIOService {
     private WebClient webClientToMockApi;
 
     @Autowired
-    private ConfigurationSingleton configurationSingleton;
+    private ApplicationProperties configurationSingleton;
 
     @PostConstruct
     public void init() {

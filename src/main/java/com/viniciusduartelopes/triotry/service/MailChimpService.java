@@ -1,6 +1,6 @@
 package com.viniciusduartelopes.triotry.service;
 
-import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
+import com.viniciusduartelopes.triotry.configuration.ApplicationProperties;
 import com.viniciusduartelopes.triotry.dto.BatchSubscribeRequestDTO;
 import com.viniciusduartelopes.triotry.dto.BatchSubscribeResponseDTO;
 import com.viniciusduartelopes.triotry.dto.CampaignDefaultsDTO;
@@ -37,9 +37,8 @@ public class MailChimpService {
     private ListDTO list;
 
     @Autowired
-    private ConfigurationSingleton configurationSingleton;
+    private ApplicationProperties applicationProperties;
 
-    @Getter
     private WebClient webClientToMailChimp;
 
     @PostConstruct
@@ -52,9 +51,9 @@ public class MailChimpService {
     private void initBaseWebClientToMailChimp() {
         if (webClientToMailChimp == null) {
             webClientToMailChimp = WebClient.builder()
-                    .baseUrl(configurationSingleton.getMailChimpUrl())
+                    .baseUrl(applicationProperties.getMailChimpUrl())
                     .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                    .defaultHeader(HttpHeaders.AUTHORIZATION, configurationSingleton.getAuth())
+                    .defaultHeader(HttpHeaders.AUTHORIZATION, applicationProperties.getAuth())
                     .build();
         }
     }
@@ -64,7 +63,7 @@ public class MailChimpService {
 
         if (listsRequestModel != null && listsRequestModel.getLists() != null && !listsRequestModel.getLists().isEmpty()) {
             list = listsRequestModel.getLists().stream()
-                    .filter(lista -> lista.getName().equals(configurationSingleton.getListName()))
+                    .filter(lista -> lista.getName().equals(applicationProperties.getListName()))
                     .findAny()
                     .get();
 
@@ -77,7 +76,7 @@ public class MailChimpService {
     }
 
     public GetListsRequestDTO getAllLists() {
-        return getWebClientToMailChimp().get()
+        return webClientToMailChimp.get()
                 .uri("/lists")
                 .retrieve()
                 .bodyToFlux(GetListsRequestDTO.class)
@@ -104,7 +103,7 @@ public class MailChimpService {
         BatchSubscribeRequestDTO batch = new BatchSubscribeRequestDTO(
                 Arrays.asList(createRandomMember(), createRandomMember(), alwaysTheSame1(), alwaysTheSame2()), true);
 
-        return getWebClientToMailChimp().post()
+        return webClientToMailChimp.post()
                 .uri("/lists/" + list.getId())
                 .body(Mono.just(batch), BatchSubscribeRequestDTO.class)
                 .retrieve()
@@ -115,7 +114,7 @@ public class MailChimpService {
         BatchSubscribeRequestDTO batch
                 = new BatchSubscribeRequestDTO(ContactsMembersUtil.contactsToMembers(contacts), true);
 
-        return getWebClientToMailChimp().post()
+        return webClientToMailChimp.post()
                 .uri("/lists/" + list.getId())
                 .body(Mono.just(batch), BatchSubscribeRequestDTO.class)
                 .retrieve()
@@ -123,7 +122,7 @@ public class MailChimpService {
     }
 
     public GetMembersRequestDTO getAllMembers() {
-        return getWebClientToMailChimp().get()
+        return webClientToMailChimp.get()
                 .uri(uriBuilder -> uriBuilder
                 .path("/lists")
                 .path("/" + list.getId())
@@ -139,7 +138,7 @@ public class MailChimpService {
         GetListsRequestDTO listsRequestModel;
 
         try {
-            listsRequestModel = getWebClientToMailChimp().delete()
+            listsRequestModel = webClientToMailChimp.delete()
                     .uri(uriBuilder -> uriBuilder
                     .path("/lists")
                     .path("/" + list.getId())
@@ -162,10 +161,10 @@ public class MailChimpService {
         newList.setCampaignDefaults(campaignDefault);
         newList.setContact(listContact);
         newList.setEmailTypeOption(true);
-        newList.setName(configurationSingleton.getListName());
+        newList.setName(applicationProperties.getListName());
         newList.setPermissionReminder("permission_reminder");
 
-        ListDTO listModel = getWebClientToMailChimp().post()
+        ListDTO listModel = webClientToMailChimp.post()
                 .uri("/lists")
                 .body(Mono.just(newList), NewListRequestDTO.class)
                 .retrieve()
