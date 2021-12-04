@@ -46,7 +46,7 @@ public class MailChimpService {
     public void init() {
         initBaseWebClientToMailChimp();
         updateOrCreateList();
-        System.out.println("INIT DE MAILCHIMP");
+        log.log(Level.INFO, "Successfully started MailChimp service.");
     }
 
     private void initBaseWebClientToMailChimp() {
