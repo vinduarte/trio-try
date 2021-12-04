@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1.configuration;
+package com.viniciusduartelopes.triotry.configuration;
 
 import java.util.logging.Level;
 import javax.annotation.PostConstruct;

@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1.model;
+package com.viniciusduartelopes.triotry.model;
 
 import javax.xml.bind.annotation.XmlElement;
 import lombok.AllArgsConstructor;

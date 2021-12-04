@@ -1,8 +1,8 @@
-package com.viniciusduartelopes.triotry.rest.v1.util;
+package com.viniciusduartelopes.triotry.util;
 
-import com.viniciusduartelopes.triotry.rest.v1.model.ContactModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.MemberModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.MergeFieldsModel;
+import com.viniciusduartelopes.triotry.model.ContactModel;
+import com.viniciusduartelopes.triotry.model.MemberModel;
+import com.viniciusduartelopes.triotry.model.MergeFieldsModel;
 import java.util.ArrayList;
 import java.util.List;
 

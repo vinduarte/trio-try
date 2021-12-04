@@ -1,8 +1,8 @@
-package com.viniciusduartelopes.triotry.rest.v1.configuration.service;
+package com.viniciusduartelopes.triotry.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.viniciusduartelopes.triotry.rest.v1.configuration.ConfigurationSingleton;
-import com.viniciusduartelopes.triotry.rest.v1.model.ContactModel;
+import com.viniciusduartelopes.triotry.configuration.ConfigurationSingleton;
+import com.viniciusduartelopes.triotry.model.ContactModel;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1.model;
+package com.viniciusduartelopes.triotry.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
@@ -10,10 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BatchSubscribeResponseModel {
+public class GetMembersRequestModel {
 
-    private List<MemberModel> new_members;
-    private List<MemberModel> updated_members;
-    private Integer total_created;
-    private Integer total_updated;
+    private List<MemberModel> members;
 }

@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1.model;
+package com.viniciusduartelopes.triotry.model;
 
 import java.util.List;
 import lombok.AllArgsConstructor;

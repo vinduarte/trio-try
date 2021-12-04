@@ -1,9 +1,9 @@
-package com.viniciusduartelopes.triotry.rest.v1.configuration.service;
+package com.viniciusduartelopes.triotry.service;
 
-import com.viniciusduartelopes.triotry.rest.v1.model.BatchSubscribeResponseModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.ContactModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.SyncResponseModel;
-import com.viniciusduartelopes.triotry.rest.v1.util.ContactsMembersUtil;
+import com.viniciusduartelopes.triotry.model.BatchSubscribeResponseModel;
+import com.viniciusduartelopes.triotry.model.ContactModel;
+import com.viniciusduartelopes.triotry.model.SyncResponseModel;
+import com.viniciusduartelopes.triotry.util.ContactsMembersUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;

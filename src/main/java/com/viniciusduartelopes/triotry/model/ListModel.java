@@ -1,17 +1,16 @@
-package com.viniciusduartelopes.triotry.rest.v1.model;
+package com.viniciusduartelopes.triotry.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ContactModel {
+public class ListModel {
 
-    private String email;
-    private String firstName;
-    private String lastName;
+    private String id;
+    private String name;
 }

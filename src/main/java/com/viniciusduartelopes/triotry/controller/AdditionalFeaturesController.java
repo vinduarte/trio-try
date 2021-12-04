@@ -1,11 +1,11 @@
-package com.viniciusduartelopes.triotry.rest.v1.controller;
+package com.viniciusduartelopes.triotry.controller;
 
-import com.viniciusduartelopes.triotry.rest.v1.configuration.service.MailChimpService;
-import com.viniciusduartelopes.triotry.rest.v1.configuration.service.MockIOService;
-import com.viniciusduartelopes.triotry.rest.v1.model.ContactModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.GetListsRequestModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.GetMembersRequestModel;
-import com.viniciusduartelopes.triotry.rest.v1.model.ListModel;
+import com.viniciusduartelopes.triotry.service.MailChimpService;
+import com.viniciusduartelopes.triotry.service.MockIOService;
+import com.viniciusduartelopes.triotry.model.ContactModel;
+import com.viniciusduartelopes.triotry.model.GetListsRequestModel;
+import com.viniciusduartelopes.triotry.model.GetMembersRequestModel;
+import com.viniciusduartelopes.triotry.model.ListModel;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

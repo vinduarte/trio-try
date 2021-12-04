@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1.model;
+package com.viniciusduartelopes.triotry.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

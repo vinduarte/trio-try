@@ -1,4 +1,4 @@
-package com.viniciusduartelopes.triotry.rest.v1;
+package com.viniciusduartelopes.triotry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
