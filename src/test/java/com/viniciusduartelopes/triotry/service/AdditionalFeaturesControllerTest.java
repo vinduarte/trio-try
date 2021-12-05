@@ -33,7 +33,7 @@ public class AdditionalFeaturesControllerTest {
     ContactDTO RECORD_3 = new ContactDTO("Jazmyn15@gmail.com", "Norene", "Effertz");
 
     @Test
-    public void getAllContacts() throws Exception {
+    public void getMockAPIAllContacts() throws Exception {
         List<ContactDTO> contacts = new ArrayList<>(Arrays.asList(RECORD_1, RECORD_2, RECORD_3));
 
         Mockito.when(mockIOService.getContacts()).thenReturn(contacts);
@@ -45,5 +45,19 @@ public class AdditionalFeaturesControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", notNullValue()))
                 .andExpect(jsonPath("$[*]", anything("Jazmyn15@gmail.com")));
+    }
+
+    @Test
+    public void getMockAPINoContacts() throws Exception {
+        List<ContactDTO> contacts = new ArrayList<>();
+
+        Mockito.when(mockIOService.getContacts()).thenReturn(contacts);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/additional/mockapi/contacts")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", empty()));
     }
 }
