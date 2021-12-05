@@ -20,13 +20,7 @@ public class MemberDTO {
     private String status;
 
     @JsonProperty("merge_fields")
+    @Getter
+    @Setter
     private MergeFieldsDTO mergeFields;
-
-    public MergeFieldsDTO getMergeFields() {
-        return mergeFields;
-    }
-
-    public void setMergeFields(MergeFieldsDTO merge_fields) {
-        this.mergeFields = merge_fields;
-    }
 }
