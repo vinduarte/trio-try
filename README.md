@@ -14,7 +14,7 @@ This project was built for Trio Take Home Project. Implemented in Java with Spri
 - [JaCoCo](https://www.eclemma.org/jacoco/)
 
 ## YouTube video
-[Clique here](www.youtube.com) to watch the video.
+[Clique here](https://youtu.be/ziJHX-jW7KA) to watch the video.
 
 ## API link (Heroku)
 http://trio-try.herokuapp.com/
